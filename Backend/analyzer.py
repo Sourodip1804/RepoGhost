@@ -7,3 +7,10 @@ IGNORED_DIRS = {
     "__pycache__", "dist", "build", ".next",
     ".idea", ".vscode"
 }
+
+CODE_EXTENSIONS = {
+    ".py", ".js", ".jsx", ".ts", ".tsx",
+    ".html", ".css", ".java", ".cpp", ".c",
+    ".h", ".cs", ".go", ".rs", ".php",
+    ".json", ".md", ".sql"
+}
