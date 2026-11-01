@@ -38,3 +38,54 @@ def scan_repository(root_path):
             try:
                 if os.path.getsize(full_path)>MAX_FILE_SIZE:
                     continue
+                with open(
+                    full_path,
+                    "r",
+                    encoding="utf-8",
+                    errors="ignore"
+                ) as file:
+                    content = file.read()
+
+                relative_path = os.path.relpath(
+                    full_path, root_path
+                ).replace("\\", "/")
+
+                files.append(relative_path)
+
+                language = extension.lstrip(".")
+                languages[language] += 1
+
+                # Find unfinished code comments
+                for line_number, line in enumerate(
+                    content.splitlines(), start=1
+                ):
+                    upper_line = line.upper()
+
+                    for keyword in ["TODO", "FIXME", "HACK"]:
+                        if keyword in upper_line:
+                            todos.append({
+                                "file": relative_path,
+                                "line": line_number,
+                                "type": keyword,
+                                "content": line.strip()
+                            })
+
+                # Check Python syntax
+                if extension == ".py":
+                    try:
+                        ast.parse(content)
+                    except SyntaxError as error:
+                        errors.append({
+                            "file": relative_path,
+                            "line": error.lineno,
+                            "message": error.msg
+                        })
+
+                # Keep limited code context for the AI
+                if content.strip():
+                    code_chunks.append({
+                        "file": relative_path,
+                        "content": content[:12000]
+                    })
+            except (OSError, UnicodeError):
+                continue
