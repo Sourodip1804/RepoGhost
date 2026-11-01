@@ -14,3 +14,13 @@ CODE_EXTENSIONS = {
     ".h", ".cs", ".go", ".rs", ".php",
     ".json", ".md", ".sql"
 }
+
+MAX_FILE_SIZE = 5_000_000  # 5 MB
+
+def scan_repository(repo_path):
+    files=[]
+    languages = Counter()
+    todos =[]
+    errors =[]
+    code_chunks=[]
+    
