@@ -1,0 +1,25 @@
+RepoGhost/
+│
+├── backend/
+│   ├── main.py
+│   ├── analyzer.py
+│   ├── ai_engine.py
+│   ├── requirements.txt
+│   ├── .env
+│   └── data/
+│
+├── frontend/
+│   ├── src/
+│   │   ├── components/
+│   │   │   ├── Sidebar.jsx
+│   │   │   ├── Dashboard.jsx
+│   │   │   ├── Chat.jsx
+│   │   │   └── Report.jsx
+│   │   ├── App.jsx
+│   │   ├── main.jsx
+│   │   └── index.css
+│   ├── index.html
+│   ├── package.json
+│   └── vite.config.js
+│
+└── README.md
