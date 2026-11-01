@@ -89,3 +89,11 @@ def scan_repository(root_path):
                     })
             except (OSError, UnicodeError):
                 continue
+    return{
+        "total_files": len(files),
+        "files": files,
+        "languages": dict(languages),
+        "todos": todos,
+        "errors": errors,
+        "code_chunks": code_chunks
+    }
