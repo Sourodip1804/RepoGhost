@@ -31,7 +31,7 @@ def scan_repository(root_path):
         ] #this is for the list of directories to ignore during the scan.
 
         for filename in filenames:
-            extension = os.path.splittext(filename)[1].lower() #this is for the file extension of the current file.
+            extension = os.path.splitext(filename)[1].lower() #this is for the file extension of the current file.
             if extension not in CODE_EXTENSIONS:
                 continue #this is for the file extension of the current file.
             full_path = os.path.join(current_root, filename) #this is for the full path of the current file.
