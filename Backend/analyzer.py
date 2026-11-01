@@ -17,10 +17,16 @@ CODE_EXTENSIONS = {
 
 MAX_FILE_SIZE = 5_000_000  # 5 MB
 
-def scan_repository(repo_path):
+def scan_repository(root_path):
     files=[]
     languages = Counter()
     todos =[]
     errors =[]
     code_chunks=[]
-    
+
+    for current_root, dirs, filenames in os.walk(root_path):
+        dirs[:]=[
+            directory for directory in dirs
+            if  directory not in IGNORED_DIRS
+        ] #this is for the list of directories to ignore during the scan.
+        
